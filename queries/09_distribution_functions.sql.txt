@@ -1,0 +1,9 @@
+-- Segment customers into 4 spending quartiles (NTILE) and calculate cumulative distribution (CUME_DIST)
+SELECT 
+    c.customer_name,
+    SUM(s.total_amount) AS total_spent,
+    NTILE(4) OVER (ORDER BY SUM(s.total_amount) DESC) AS spending_quartile,
+    CUME_DIST() OVER (ORDER BY SUM(s.total_amount) DESC) AS cumulative_distribution
+FROM sales s
+JOIN customers c ON s.customer_id = c.customer_id
+GROUP BY c.customer_id, c.customer_name;

@@ -1,0 +1,11 @@
+-- Compare current transaction revenue with previous (LAG) and upcoming (LEAD) records
+SELECT 
+    sale_id,
+    sale_date,
+    customer_id,
+    total_amount,
+    LAG(total_amount, 1, 0) OVER (ORDER BY sale_date) AS previous_sale_amount,
+    total_amount - LAG(total_amount, 1, 0) OVER (ORDER BY sale_date) AS revenue_change,
+    LEAD(total_amount, 1, 0) OVER (ORDER BY sale_date) AS next_sale_amount,
+    LEAD(sale_date, 1) OVER (PARTITION BY customer_id ORDER BY sale_date) AS next_customer_purchase_date
+FROM sales;

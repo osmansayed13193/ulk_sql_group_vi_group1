@@ -1,0 +1,20 @@
+-- Running sales totals (RANGE), 3-transaction moving averages (ROWS), and branch comparisons
+SELECT 
+    s.sale_id,
+    s.sale_date,
+    b.branch_name,
+    s.total_amount,
+    SUM(s.total_amount) OVER (
+        ORDER BY s.sale_date 
+        RANGE BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW
+    ) AS cumulative_revenue,
+    AVG(s.total_amount) OVER (
+        ORDER BY s.sale_date 
+        ROWS BETWEEN 2 PRECEDING AND CURRENT ROW
+    ) AS moving_avg_3_trans,
+    AVG(s.total_amount) OVER (PARTITION BY s.branch_id) AS branch_avg_sale,
+    MIN(s.total_amount) OVER () AS overall_min_sale,
+    MAX(s.total_amount) OVER () AS overall_max_sale,
+    COUNT(s.sale_id) OVER (PARTITION BY s.branch_id) AS branch_tx_count
+FROM sales s
+JOIN branches b ON s.branch_id = b.branch_id;

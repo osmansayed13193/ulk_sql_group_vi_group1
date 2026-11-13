@@ -1,0 +1,10 @@
+-- Identify customers who have never made a purchase (unmatched records in left table)
+SELECT 
+    c.customer_id,
+    c.customer_name,
+    c.region,
+    s.sale_id,
+    s.total_amount
+FROM customers c
+LEFT JOIN sales s ON c.customer_id = s.customer_id
+WHERE s.sale_id IS NULL;

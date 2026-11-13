@@ -1,0 +1,8 @@
+-- Display all matching and unmatched records between customers and sales
+SELECT 
+    c.customer_id,
+    c.customer_name,
+    s.sale_id,
+    s.total_amount
+FROM customers c
+FULL OUTER JOIN sales s ON c.customer_id = s.customer_id;

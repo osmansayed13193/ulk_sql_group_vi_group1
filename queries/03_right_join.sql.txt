@@ -1,0 +1,10 @@
+-- Identify products that have never been sold (unmatched records in right table)
+SELECT 
+    p.product_id,
+    p.product_name,
+    p.category,
+    s.sale_id,
+    s.quantity
+FROM sales s
+RIGHT JOIN products p ON s.product_id = p.product_id
+WHERE s.sale_id IS NULL;
