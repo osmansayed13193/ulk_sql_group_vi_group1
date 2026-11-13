@@ -1,0 +1,36 @@
+-- Insert Sample Data for Cooperative Business Scenario
+INSERT INTO branches (branch_id, branch_name, region) VALUES
+(1, 'Kigali Main', 'Kigali'),
+(2, 'Musanze Hub', 'North'),
+(3, 'Huye Branch', 'South'),
+(4, 'Rubavu Center', 'West');
+
+INSERT INTO employees (employee_id, employee_name, branch_id, manager_id, performance_score) VALUES
+(1, 'Eric Maniraguha', 1, NULL, 95.50),
+(2, 'Alice Uwase', 1, 1, 88.00),
+(3, 'Jean Bosco', 2, NULL, 91.20),
+(4, 'Diane Mukamana', 3, NULL, 85.00),
+(5, 'Claude Nshimiyimana', 4, NULL, 90.50);
+
+INSERT INTO customers (customer_id, customer_name, region, join_date) VALUES
+(101, 'Patrick Mugabo', 'Kigali', '2026-01-10'),
+(102, 'Gisele Ingabire', 'North', '2026-02-15'),
+(103, 'Emmanuel Ndayisenga', 'South', '2026-03-20'),
+(104, 'Claudine Uwimana', 'West', '2026-04-05'),
+(105, 'Inactive Customer', 'Kigali', '2026-05-01');
+
+INSERT INTO products (product_id, product_name, category, unit_price) VALUES
+(201, 'Fertilizer NPK', 'Agriculture', 25000.00),
+(202, 'Hybrid Maize Seeds', 'Agriculture', 5000.00),
+(203, 'Solar Panel 100W', 'Energy', 120000.00),
+(204, 'Water Pump', 'Equipment', 350000.00),
+(205, 'Unsold Inventory Item', 'General', 15000.00);
+
+INSERT INTO sales (sale_id, customer_id, employee_id, product_id, branch_id, quantity, sale_date, total_amount) VALUES
+(1, 101, 2, 201, 1, 4, '2026-01-15', 100000.00),
+(2, 101, 2, 202, 1, 10, '2026-02-10', 50000.00),
+(3, 102, 3, 203, 2, 2, '2026-02-18', 240000.00),
+(4, 103, 4, 204, 3, 1, '2026-03-05', 350000.00),
+(5, 104, 5, 201, 4, 6, '2026-03-22', 150000.00),
+(6, 102, 3, 202, 2, 5, '2026-04-12', 25000.00),
+(7, 101, 2, 203, 1, 1, '2026-04-25', 120000.00);
